@@ -30,5 +30,7 @@ script:
   - docker build -t eritikass/ci-test .
 
 after_script:
-  - docker run -d --name ci-test -p "8081:ci-test" eritikass/ci-test
+  - docker ps
+  - docker run -d --name ci-test -p "8081:80" eritikass/ci-test
+  - docker ps
   - curl "http:\\localhost:8081\index.html"
