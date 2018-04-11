@@ -1,2 +1,24 @@
 # https://docs.travis-ci.com/user/languages/javascript-with-nodejs/
+# https://docs.travis-ci.com/user/customizing-the-build
 language: node_js
+node_js:
+  - "9"
+
+sudo: required
+
+services:
+  - docker
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - npm install
+
+before_script:
+  - npm run test
+
+script:
+  - npm run build
+  - docker build -t eritikass/ci-test .
