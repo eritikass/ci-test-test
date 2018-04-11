@@ -33,4 +33,4 @@ after_script:
   - docker ps
   - docker run -d --name ci-test -p "8081:80" eritikass/ci-test
   - docker ps
-  - curl http:\\localhost:8081\index.html
+  - curl "http://localhost:8081/index.html"
