@@ -13,13 +13,22 @@ cache:
   directories:
     - "node_modules"
 
-install:
+before_install:
   - npm i -g npm@latest
+  - sudo apt-get update && sudo apt-get install curl
+
+install:
   - npm ci
 
 before_script:
-  - npm run test
+  - npm run stylelint
+  - npm run lint
+  - npm run unit
 
 script:
   - npm run build
   - docker build -t eritikass/ci-test .
+
+after_script:
+  - docker run -d --name ci-test -p "8081:ci-test" eritikass/ci-test
+  - curl "http:\\localhost:8081\index.html"
