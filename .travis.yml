@@ -14,7 +14,7 @@ cache:
     - "node_modules"
 
 install:
-  - npm install
+  - npm ci
 
 before_script:
   - npm run test
